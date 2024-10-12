@@ -1,4 +1,6 @@
-# HealthFitFastAI: Your Personalized Fitness and Wellbeing Coach
+# FitFastAI: Your Personalized Fitness and Wellbeing Coach
+
+![FitFastAI Logo](./logo_v1.png)
 
 ## Overview
 
@@ -40,6 +42,8 @@ Experience the future of personalized health and fitness. Sign up for HealthFit 
 
 - [Austin](https://github.com/AustinSnyd3r)
 - [Alice](https://github.com/AvaAvarai)
+
+*This project is being built during the 2024 DubHacks Hackathon, the largest hackathon in the Pacific Northwest.*
 
 ## License
 
