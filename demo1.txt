@@ -1,0 +1,45 @@
+(venv) alicewilliams@Alices-Laptop FitFastAI % python test.py
+Please enter your name: Alice Williams
+Please provide a brief bio or any relevant information about yourself: I am a kyokushin white belt who has delayed training for one week looking to jump back in.
+
+Your personalized workout plan for the next week:
+**Personalized Workout Plan for Alice Williams**  
+**Goal:** Transition back into Kyokushin training and improve overall fitness and readiness.
+
+### Weekly Workout Schedule
+
+**Day 1: Strength and Conditioning**
+- **Type of Exercises:** Bodyweight exercises (Push-ups, Squats, Lunges, Planks)
+- **Frequency:** 1 session
+- **Duration:** 30-45 minutes
+- **Recommendations:** Focus on form and control. Aim for 2-3 sets of 10-15 reps for each exercise. Incorporate a 1-minute rest between sets.
+
+**Day 2: Kyokushin Basics**
+- **Type of Exercises:** Shadow boxing, stance practice, basic kihon (techniques)
+- **Frequency:** 1 session
+- **Duration:** 30-45 minutes
+- **Recommendations:** Focus on technique; practice basic punches and kicks. Emphasize proper stances and movement. Use a mirror if possible to check your form.
+
+**Day 3: Active Recovery and Flexibility**
+- **Type of Exercises:** Gentle yoga or stretching routine
+- **Frequency:** 1 session
+- **Duration:** 30 minutes
+- **Recommendations:** Focus on flexibility, especially in the hips, shoulders, and legs. This will help in kicking and overall mobility.
+
+**Day 4: Cardio and Endurance**
+- **Type of Exercises:** Moderate-intensity cardio (jogging, cycling, or skipping rope)
+- **Frequency:** 1 session
+- **Duration:** 30-60 minutes
+- **Recommendations:** Keep a steady pace to build endurance. If possible, include intervals (e.g., 1 minute fast, 2 minutes steady pace).
+
+**Day 5: Kyokushin Sparring Drills**
+- **Type of Exercises:** Partner drills (if available) or solo drills focusing on techniques
+- **Frequency:** 1 session
+- **Duration:** 30-45 minutes
+- **Recommendations:** If you have a partner, practice controlled sparring techniques. If solo, focus on footwork and speed drills.
+
+**Day 6: Strength and Conditioning**
+- **Type of Exercises:** Resistance training (using dumbbells or resistance bands)
+- **Frequency:** 1 session
+- **Duration:** 30-45 minutes
+- **Recommendations:** Focus on compound movements (e.g., deadlifts, shoulder presses). Aim for 2-3 sets of 8-12
