@@ -22,7 +22,7 @@ FitFastAI is an innovative application that leverages the power of artificial in
 4. Users can interact with the AI coach for ongoing support and plan adjustments.
 5. Regular updates based on user feedback and progress data ensure continual optimization.
 
-*These steps are not yet fully implemented.*
+*Full functionality is not yet fully implemented.*
 
 ## Benefits
 
@@ -34,16 +34,18 @@ FitFastAI is an innovative application that leverages the power of artificial in
 
 ## Get Started
 
-Experience the future of personalized health and fitness. Sign up for HealthFit AI today and take the first step towards a healthier, more active lifestyle!
+Experience the future of personalized health and fitness. Sign up for FitFastAI today and take the first step towards a healthier, more active lifestyle!
 
 *Note: This is a minimal viable product (MVP) demonstration. Full functionality is under development.*
 
 ## Project Contributors
 
-- [Austin](https://github.com/AustinSnyd3r)
-- [Alice](https://github.com/AvaAvarai)
+This project is being built by a team of two students from Central Washington University. See our profiles below:
 
-*This project is being built during the 2024 DubHacks Hackathon, the largest hackathon in the Pacific Northwest.*
+- [Austin Snyder](https://github.com/AustinSnyd3r)
+- [Alice Williams](https://github.com/AvaAvarai)
+
+*Built overnight at the 2024 DubHacks Hackathon, the largest hackathon in the Pacific Northwest.*
 
 ## License
 
