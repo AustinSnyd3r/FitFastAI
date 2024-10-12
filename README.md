@@ -10,6 +10,7 @@ FitFastAI is an innovative application that leverages the power of artificial in
 2. **Nutritional Guidance**: Custom meal suggestions and dietary advice powered by perplexity-sourced nutritional information.
 3. **Progress Tracking**: Easy-to-use interface for logging workouts and monitoring health metrics.
 4. **AI Health Coach**: Virtual assistant providing motivation, tips, and answering health-related questions.
+5. **Integration with Wearables**: Sync with popular fitness trackers for more accurate data collection.
 
 ## How It Works
 
@@ -17,6 +18,9 @@ FitFastAI is an innovative application that leverages the power of artificial in
 2. Our AI analyzes the data and sources relevant health information using perplexity.
 3. Generative AI creates a tailored health regimen and exercise plan.
 4. Users can interact with the AI coach for ongoing support and plan adjustments.
+5. Regular updates based on user feedback and progress data ensure continual optimization.
+
+*These steps are not yet fully implemented.*
 
 ## Benefits
 
@@ -24,6 +28,7 @@ FitFastAI is an innovative application that leverages the power of artificial in
 - 24/7 access to AI-powered health advice
 - Evidence-based recommendations sourced from reputable health databases
 - Motivational support to help you stay on track
+- Privacy-focused design with secure data handling
 
 ## Get Started
 
