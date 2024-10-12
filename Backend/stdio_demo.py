@@ -1,6 +1,7 @@
 import openai
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 
 def get_user_info():
     name = input("Please enter your name: ")
@@ -36,12 +37,23 @@ def generate_workout_plan(name, bio):
 
     return response.choices[0].message.content.strip()
 
+def save_workout_plan(name, workout_plan):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"Lessons/{name.lower().replace(' ', '_')}_{timestamp}_workout_plan.txt"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, 'w') as file:
+        file.write(workout_plan)
+    return filename
+
 def main():
     name, bio = get_user_info()
     workout_plan = generate_workout_plan(name, bio)
     
     print("\nYour personalized workout plan for the next week:")
     print(workout_plan)
+
+    filename = save_workout_plan(name, workout_plan)
+    print(f"\nYour workout plan has been saved to {filename}")
 
 if __name__ == "__main__":
     main()
