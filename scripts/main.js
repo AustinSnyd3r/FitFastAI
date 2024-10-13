@@ -22,17 +22,17 @@ document.getElementById('promptButton').addEventListener('click', () => {
     const name = document.getElementById('name').value;
 
     // Construct the URL with query parameters
-    const url = `/generate_workout?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}`;
-
+    const url = `http://127.0.0.1:5000/generate_workout?name=${name}&bio=${bio}`;
+    console.log(url);
     // Sending a GET request with query parameters
     fetch(url, {
-        method: 'GET',  // Use GET since you're sending data via URL query params
+        method: 'POST',  
     })
     .then(response => response.json())
     .then(data => {
         document.getElementById('response').innerText = data.message;
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error in js:', error);
     });
 });
