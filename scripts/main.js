@@ -130,16 +130,27 @@ document.addEventListener("DOMContentLoaded", () => {
             errorMessage.style.display = 'none';
             errorMessage.style.color = 'red';
 
-            let sources = []; // Create an empty array to store the sources
-            console.log(data.sources);
-            if (data && data.sources && Array.isArray(data.sources)) {
-                sources = data.sources; // Fill the array with the sources from the JSON
-                console.log("Sources array:", sources); // You can check the array in the console
+           // Check if data.sources exists and is an array
+    if (data && data.sources && Array.isArray(data.sources)) {
+        // Store the sources in a variable
+        let sources = data.sources;
 
-                // You can now manipulate or display the `sources` array as needed
-            } else {
-                console.log("No sources available.");
-            }
+        // Log the sources to the console
+        console.log("Sources array:", sources);
+
+        // Optionally, you can do something with the sources, e.g., display them on the page
+        const sourcesContainer = document.getElementById('sources');
+        sourcesContainer.innerHTML = ''; // Clear any previous sources
+        sources.forEach(source => {
+            const sourceElement = document.createElement('a');
+            sourceElement.href = source; // Set the link
+            sourceElement.textContent = source; // Set the link text
+            sourceElement.target = '_blank'; // Open link in a new tab
+            sourcesContainer.appendChild(sourceElement); // Append to the container
+        });
+    } else {
+        console.log("No sources available.");
+    }
 
         })
         .catch(error => {
