@@ -14,6 +14,9 @@ CORS(app)
 load_dotenv()
 client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
+def extract_links(text):
+    return re.findall(r'https?://\S+', text)
+
 def query_perplexity(query):
     api_key = os.getenv('PERPLEXITY_API_KEY')
     headers = {
@@ -23,23 +26,24 @@ def query_perplexity(query):
     data = {
         "model": "llama-3.1-sonar-small-128k-online",
         "messages": [
-            {"role": "system", "content": "You are a helpful assistant. Please provide information on the given topic."},
-            {"role": "user", "content": f"Search for information on the following topic: {query}"}
+            {"role": "system", "content": "You are a helpful assistant. Please provide information on the given topic and related sources with links."},
+            {"role": "user", "content": f"Search for information on the following topic: {query}, and provide links to the sources you used to answer the question."}
         ]
     }
     response = requests.post("https://api.perplexity.ai/chat/completions", json=data, headers=headers)
     print(f"Full API Response: {json.dumps(response.json(), indent=2)}", file=sys.stderr)
     if response.status_code == 200:
         content = response.json()['choices'][0]['message']['content']
-        return content
+        links = extract_links(content)
+        return content, links
     else:
         print(f"Error querying Perplexity API: {response.status_code}", file=sys.stderr)
         print(f"Response content: {response.text}", file=sys.stderr)
-        return None
+        return None, []
 
 def generate_workout_plan(name, bio):
     perplexity_query = f"Creating a personalized workout plan for a person with the following bio: {bio}"
-    supporting_info = query_perplexity(perplexity_query)
+    supporting_info, links = query_perplexity(perplexity_query)
     
     if supporting_info is None:
         supporting_info = ""
@@ -79,10 +83,10 @@ def generate_workout_plan(name, bio):
             n=1,
             temperature=0.7,
         )
-        return response.choices[0].message.content.strip()
+        return response.choices[0].message.content.strip(), links
     except Exception as e:
         print(f"Error generating workout plan: {str(e)}", file=sys.stderr)
-        return None
+        return None, []
 
 def parse_workout_plan(plan_text):
     days = re.split(r'Day \d+:', plan_text)[1:]  # Split by day, remove empty first element
@@ -113,7 +117,7 @@ def generate_workout_api():
     if not name or not bio:
         return jsonify({"error": "Name and bio are required query parameters"}), 400
     
-    workout_plan = generate_workout_plan(name, bio)
+    workout_plan, links = generate_workout_plan(name, bio)
     
     if workout_plan is None:
         return jsonify({"error": "Failed to generate workout plan"}), 500
@@ -125,7 +129,8 @@ def generate_workout_api():
         return jsonify({"error": "Failed to parse workout plan"}), 500
     
     response = {
-        "workout_plan": parsed_workout_plan
+        "workout_plan": parsed_workout_plan,
+        "sources": links
     }
     
     return jsonify(response)
