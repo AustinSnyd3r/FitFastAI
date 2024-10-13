@@ -96,6 +96,7 @@ def parse_workout_plan(plan_text):
         day_dict = {}
         exercises_match = re.search(r'Exercises:(.*?)Duration:', day, re.DOTALL)
         duration_match = re.search(r'Duration:(.*?)Recommendations:', day, re.DOTALL)
+        sources_match = re.search(r'Sources:(.*)', day, re.DOTALL)
         recommendations_match = re.search(r'Recommendations:(.*)', day, re.DOTALL)
         
         if exercises_match:
@@ -104,6 +105,8 @@ def parse_workout_plan(plan_text):
             day_dict['duration'] = duration_match.group(1).strip()
         if recommendations_match:
             day_dict['recommendations'] = recommendations_match.group(1).strip()
+        if sources_match:
+            day_dict['sources'] = sources_match.group(1).strip()
         
         parsed_plan.append(day_dict)
     
