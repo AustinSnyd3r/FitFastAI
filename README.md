@@ -60,4 +60,4 @@ This project is being built by a team of two students from Central Washington Un
 
 ## License
 
-HealthFit AI is released under the MIT License. Please see the [LICENSE](LICENSE) file for further details.
+FitFastAI is freely released under the open-source MIT License. Please see the [LICENSE](LICENSE) file for further details.
