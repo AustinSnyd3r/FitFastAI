@@ -6,6 +6,15 @@
 
 FitFastAI is an innovative application that leverages the power of artificial intelligence to create personalized health regimens and exercise plans tailored to each user's unique needs and goals. By combining perplexity-based information sourcing with generative AI for content creation, we offer a cutting-edge solution for health-conscious individuals seeking customized guidance to improve their health and wellbeing.
 
+## .env file
+
+The .env file is used to store the API keys for the Perplexity and OpenAI APIs. It is not included in the repository due to the sensitivity of the API keys.
+
+```.env
+OPENAI_API_KEY=<KEY HERE>
+PERPLEXITY_API_KEY=<KEY HERE>
+```
+
 ## Key Features
 
 1. **Personalized Exercise Plans**: AI-generated workout routines based on user preferences, fitness level, and goals.
@@ -35,6 +44,8 @@ FitFastAI is an innovative application that leverages the power of artificial in
 ## Get Started
 
 Experience the future of personalized health and fitness. Sign up for FitFastAI today and take the first step towards a healthier, more active lifestyle!
+
+The backend is built using Flask and has a requirements.txt file for required dependencies.
 
 *Note: This is a minimal viable product (MVP) demonstration. Full functionality is under development.*
 
