@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif; /* Sets a clean, modern font */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    display: flex; /* Use flexbox for the body to center content */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content horizontally */
+    height: 100vh; /* Full height of the viewport */
+    background-color: #18181a; /* Dark background for the body */
+}
+
+#promptContainer {
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    padding: 20px; /* Padding inside the container */
+    margin-bottom: 20px; /* Space between input container and card container */
+    width: 75%; /* Width of the container */
+    background-color: #2e3033;
+
+}
+
+#promptContainer h3 {
+    margin: 10px 0; /* Space above and below headings */
+}
+
+#promptContainer input {
+    width: 90%; /* Full width of the container */
+    padding: 10px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Space between input fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded edges for input fields */
+    font-size: 1rem; /* Font size */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
+    margin-right: 10px;
+}
+
+/* Change border color on focus */
+#promptContainer input:focus {
+    border-color: #4a4a4a; /* Dark gray border on focus */
+    outline: none; /* Remove default outline */
+}
+
+#cardContainer {
+    display: flex; /* Use flexbox for the card container */
+    justify-content: space-between; /* Evenly space cards */
+    width: 80%; /* Width of the container */
+    max-width: 1200px; /* Maximum width for larger screens */
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    padding: 20px; /* Padding inside the container */
+    background-color: #2e3033; /* Dark background for the card container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.card {
+    background-color: #3f4145; /* Dark gray background for cards */
+    color: white; /* White text for better contrast */
+    border-radius: 15px; /* Rounded edges */
+    flex: 1; /* Allow each card to take up equal space */
+    margin: 0 10px; /* Space between cards (horizontal only) */
+    padding: 20px; /* Padding inside cards */
+    text-align: center; /* Center text in cards */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    max-width: 140px; /* Set max width for cards */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Remove margin from the first and last card to prevent overflow */
+.card:first-child {
+    margin-left: 0; /* No margin on the left of the first card */
+}
+
+.card:last-child {
+    margin-right: 0; /* No margin on the right of the last card */
+}
+
+.card h1 {
+    margin: 0; /* Remove margin from the heading */
+    font-size: 1rem; /* Font size for card headings */
+}
+
+/* Hover effect for cards */
+.card:hover {
+    background-color: #6a6a6a; /* Lighten the card on hover */
+}
+
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #2e3033; /* Modal background color */
+    border-radius: 15px; /* Rounded corners */
+    width: 80%; /* Width of the modal */
+    max-width: 600px; /* Maximum width */
+    margin: 15% auto; /* Center the modal vertically and horizontally */
+    color: white; /* Text color */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    padding: 20px; /* Padding inside the modal */
+}
+
+.close-button {
+    color: white; /* Color for the close button */
+    float: right; /* Position the close button in the top right corner */
+    font-size: 24px; /* Font size for the close button */
+    font-weight: bold; /* Make the button bold */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.close-button:hover {
+    color: #ff4444; /* Change color on hover */
+}
+
+
+#banner {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Center items vertically */
+    justify-content: flex-start; /* Align items to the left */
+    background-color: #4A4A4A; /* Background color for the banner */
+    color: white; /* Text color */
+    width: 100%; /* Full width of the viewport */
+}
+
+#logo {
+    width: 50px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between logo and text */
+}
+
+#bannerText {
+    display: flex; /* Use flexbox for text layout */
+    flex-direction: column; /* Stack text vertically */
+}
+
+#bannerText h1 {
+    font-size: 2rem; /* Larger font size for the title */
+    margin: 0; /* Remove default margin */
+}
+
+#bannerText p {
+    font-size: 1rem; /* Slightly larger font for the subtitle */
+    margin: 0; /* Remove default margin */
+    padding-left: 20px;
+}
+
+#banner img{
+    width: 80px;
+}
