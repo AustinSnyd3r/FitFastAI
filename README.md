@@ -1,6 +1,7 @@
 # FitFastAI: Your Personalized Fitness and Wellbeing Coach
 
 ![FitFastAI Logo](./logo_v1.png)
+WIP UI:![FitFastAI Demo](./demo.png)
 
 ## Overview
 
