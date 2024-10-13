@@ -13,17 +13,18 @@ body {
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     padding: 20px; /* Padding inside the container */
-    margin-bottom: 20px; /* Space between input container and card container */
+    /*margin-bottom: 20px; /* Space between input container and card container */
     width: 75%; /* Width of the container */
     background-color: #2e3033;
-
+    margin: 25px;
+    color: white;
 }
 
 #promptContainer h3 {
     margin: 10px 0; /* Space above and below headings */
 }
 
-#promptContainer input {
+#promptContainer input[type='text'] {
     width: 90%; /* Full width of the container */
     padding: 10px; /* Padding inside input fields */
     margin-bottom: 15px; /* Space between input fields */
@@ -32,7 +33,14 @@ body {
     font-size: 1rem; /* Font size */
     transition: border-color 0.3s; /* Smooth transition for focus effect */
     margin-right: 10px;
+    background-color: #3f4145;
 }
+
+#promptContainer input[type='submit'] {
+
+
+}
+
 
 /* Change border color on focus */
 #promptContainer input:focus {
