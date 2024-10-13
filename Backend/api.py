@@ -23,37 +23,32 @@ def query_perplexity(query):
     data = {
         "model": "llama-3.1-sonar-small-128k-online",
         "messages": [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": query}
+            {"role": "system", "content": "You are a helpful assistant. Please provide information on the given topic."},
+            {"role": "user", "content": f"Search for information on the following topic: {query}"}
         ]
     }
     response = requests.post("https://api.perplexity.ai/chat/completions", json=data, headers=headers)
+    print(f"Full API Response: {json.dumps(response.json(), indent=2)}", file=sys.stderr)
     if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content'], response.json().get('sources', [])
+        content = response.json()['choices'][0]['message']['content']
+        return content
     else:
         print(f"Error querying Perplexity API: {response.status_code}", file=sys.stderr)
         print(f"Response content: {response.text}", file=sys.stderr)
-        return None, []
+        return None
 
 def generate_workout_plan(name, bio):
-    perplexity_query = f"Provide information on creating a personalized workout plan for {name} with the following bio: {bio}"
-    supporting_info, sources = query_perplexity(perplexity_query)
+    perplexity_query = f"Creating a personalized workout plan for a person with the following bio: {bio}"
+    supporting_info = query_perplexity(perplexity_query)
     
     if supporting_info is None:
         supporting_info = ""
-        sources = []
-
-    sources_text = "\n".join([f"- {source}" for source in sources])
 
     prompt = f"""
-    Name: {name}
     Bio: {bio}
 
     Supporting Information:
     {supporting_info}
-
-    Sources:
-    {sources_text}
 
     Based on the information provided, create a personalized workout plan for exactly 5 days.
     For each day, provide:
@@ -84,10 +79,10 @@ def generate_workout_plan(name, bio):
             n=1,
             temperature=0.7,
         )
-        return response.choices[0].message.content.strip(), sources
+        return response.choices[0].message.content.strip()
     except Exception as e:
         print(f"Error generating workout plan: {str(e)}", file=sys.stderr)
-        return None, []
+        return None
 
 def parse_workout_plan(plan_text):
     days = re.split(r'Day \d+:', plan_text)[1:]  # Split by day, remove empty first element
@@ -118,7 +113,7 @@ def generate_workout_api():
     if not name or not bio:
         return jsonify({"error": "Name and bio are required query parameters"}), 400
     
-    workout_plan, sources = generate_workout_plan(name, bio)
+    workout_plan = generate_workout_plan(name, bio)
     
     if workout_plan is None:
         return jsonify({"error": "Failed to generate workout plan"}), 500
@@ -130,8 +125,7 @@ def generate_workout_api():
         return jsonify({"error": "Failed to parse workout plan"}), 500
     
     response = {
-        "workout_plan": parsed_workout_plan,
-        "sources": sources
+        "workout_plan": parsed_workout_plan
     }
     
     return jsonify(response)
