@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         errorMessage.textContent = "Loading, please wait";
         errorMessage.style.display = 'block';
         errorMessage.style.color = 'green';
@@ -126,6 +125,22 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 document.getElementById('response').innerText = 'No valid workout plan received.';
             }
+
+            errorMessage.textContent = "";
+            errorMessage.style.display = 'none';
+            errorMessage.style.color = 'red';
+
+            let sources = []; // Create an empty array to store the sources
+            console.log(data.sources);
+            if (data && data.sources && Array.isArray(data.sources)) {
+                sources = data.sources; // Fill the array with the sources from the JSON
+                console.log("Sources array:", sources); // You can check the array in the console
+
+                // You can now manipulate or display the `sources` array as needed
+            } else {
+                console.log("No sources available.");
+            }
+
         })
         .catch(error => {
             console.error('Error in js:', error);
