@@ -13,11 +13,17 @@ body {
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     padding: 20px; /* Padding inside the container */
-    /*margin-bottom: 20px; /* Space between input container and card container */
     width: 75%; /* Width of the container */
     background-color: #2e3033;
     margin: 25px;
     color: white;
+}
+
+#trainingHeader {
+    text-align: left; /* Align the header to the left */
+    margin-bottom: 20px; /* Space below the header */
+    font-size: 24px; /* Font size of the header */
+    color: white; /* Color of the text */
 }
 
 #promptContainer h3 {
@@ -34,6 +40,7 @@ body {
     transition: border-color 0.3s; /* Smooth transition for focus effect */
     margin-right: 10px;
     background-color: #3f4145;
+    color: white;
 }
 
 #promptContainer button {
@@ -185,4 +192,8 @@ body {
 
 #banner img{
     width: 80px;
+}
+
+#errorMessage{
+    color:darkred;
 }

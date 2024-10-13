@@ -1,7 +1,5 @@
-// Declare dayMappings in a broader scope
 let dayMappings = {};
 
-// Function to open the modal with the correct day data
 // Function to open the modal with the correct day data
 function openModal(title) {
     document.getElementById('modalTitle').textContent = title;
@@ -11,33 +9,33 @@ function openModal(title) {
                      title === "Tuesday" ? 1 :
                      title === "Wednesday" ? 2 :
                      title === "Thursday" ? 3 :
-                     title === "Friday" ? 4 : -1; // Default to -1 if not found
+                     title === "Friday" ? 4 : -1;
 
     if (dayIndex !== -1) {
         const dayData = dayMappings[dayIndex];
-        let modalBodyContent = `<strong>Exercises:</strong><ul>`; // Start with the exercises heading and an unordered list
+        let modalBodyContent = `<strong>Exercises:</strong><ul>`;
 
         // Split the exercises by line and create list items
         const exercisesList = dayData.exercises.split('\n').map(exercise => `<li>${exercise.trim()}</li>`).join('');
-        modalBodyContent += exercisesList; // Add list items
-        modalBodyContent += `</ul>`; // Close the unordered list
+        modalBodyContent += exercisesList;
+        modalBodyContent += `</ul>`;
 
         // Add Duration
-        modalBodyContent += `<strong>Duration:</strong> ${dayData.duration || 'Not specified'}<br><br>`; // Add duration
+        modalBodyContent += `<strong>Duration:</strong> ${dayData.duration || 'Not specified'}<br><br>`;
 
         // Add Recommendations only if they exist
         if (dayData.recommendations && dayData.recommendations.trim() !== 'None') {
-            modalBodyContent += `<strong>Recommendations:</strong><ul>`; // Start the recommendations list
+            modalBodyContent += `<strong>Recommendations:</strong><ul>`;
             const recommendationsList = dayData.recommendations.split('\n').map(recommendation => `<li>${recommendation.trim()}</li>`).join('');
-            modalBodyContent += recommendationsList; // Add list items
-            modalBodyContent += `</ul>`; // Close the recommendations unordered list
+            modalBodyContent += recommendationsList;
+            modalBodyContent += `</ul>`;
         } else {
-            modalBodyContent += `<strong>Recommendations:</strong> None`; // If no recommendations
+            modalBodyContent += `<strong>Recommendations:</strong> None`;
         }
 
         document.getElementById('modalBody').innerHTML = modalBodyContent; // Set modal body content with HTML
     } else {
-        document.getElementById('modalBody').textContent = 'No data available for this day.'; // Fallback message
+        document.getElementById('modalBody').textContent = 'Enjoy a rest day! You earned it.'; // Fallback message
     }
 
     document.getElementById('modal').style.display = 'block'; // Show modal
@@ -58,8 +56,21 @@ window.onclick = function(event) {
 
 // Fetch workout data on button click
 document.getElementById('promptButton').addEventListener('click', () => {
-    const bio = document.getElementById('bio').value;
-    const name = document.getElementById('name').value;
+    // Clear previous error message
+    let errorMessage = document.getElementById('errorMessage');
+    errorMessage.textContent = ""; // Clear any existing error message
+    errorMessage.style.display = 'none'; // Hide the error message initially
+
+    const bio = document.getElementById('bio').value.trim(); // Trim whitespace
+    const name = document.getElementById('name').value.trim(); // Trim whitespace
+
+    // Check if the bio is empty
+    if (bio === '' || name === '') {
+        errorMessage.textContent = "Enter both a name and bio."; // Set the error message
+        errorMessage.style.display = 'block'; // Show the error message
+        return; // Exit the function if bio is empty
+    }
+
 
     // Construct the URL with query parameters
     const url = `http://127.0.0.1:5000/generate_workout?name=${encodeURIComponent(name)}&bio=${encodeURIComponent(bio)}`;
@@ -116,12 +127,11 @@ document.getElementById('promptButton').addEventListener('click', () => {
     });
 });
 
-// Function to parse the workout data
-// Function to parse the workout data
+
 // Function to parse the workout data
 function parseWorkoutData(data) {
     const days = [];
-    const entries = data.trim().split("\n\n"); // Split by double newline
+    const entries = data.trim().split("\n\n");
 
     entries.forEach((entry) => {
         const lines = entry.split("\n").map(line => line.trim());
@@ -152,7 +162,7 @@ function parseWorkoutData(data) {
         // Create an object for each day
         days.push({
             day: dayTitle,
-            exercises: exercises.join('\n'), // Join exercises into a single string
+            exercises: exercises.join('\n'),
             duration: duration,
             recommendations: recommendations
         });
