@@ -36,10 +36,32 @@ body {
     background-color: #3f4145;
 }
 
-#promptContainer input[type='submit'] {
-
+#promptContainer button {
+    background-color: #41b59c; /* Minty green */
+            color: #ffffff; /* White text */
+            border: none; /* Remove default border */
+            border-radius: 24px; /* Fully rounded corners */
+            padding: 12px 24px; /* Padding for size */
+            font-size: 16px; /* Font size */
+            font-weight: 600; /* Bold text */
+            cursor: pointer; /* Pointer on hover */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            display: inline-block; /* Allows padding and margin to work */
+            outline: none; /* Remove default focus outline */
 
 }
+#promptContainer button:focus {
+            box-shadow: 0 0 0 4px rgba(27, 158, 119, 0.5); /* Focus outline */
+}
+
+#promptContainer button:hover{
+    background-color: #17b066; /* Slightly darker green on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+
 
 
 /* Change border color on focus */
