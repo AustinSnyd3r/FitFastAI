@@ -17,14 +17,19 @@ def query_perplexity(query):
         "Content-Type": "application/json"
     }
     data = {
-        "query": query,
-        "max_tokens": 1000
+        "model": "llama-3.1-sonar-small-128k-online",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": query}
+        ]
     }
     response = requests.post("https://api.perplexity.ai/chat/completions", json=data, headers=headers)
     if response.status_code == 200:
-        return response.json()['choices'][0]['text']
+        return response.json()['choices'][0]['message']['content'], response.json().get('sources', [])
     else:
-        return None
+        print(f"Error querying Perplexity API: {response.status_code}")
+        print(f"Response content: {response.text}")
+        return None, []
 
 def generate_workout_plan(name, bio):
     load_dotenv()
@@ -32,7 +37,19 @@ def generate_workout_plan(name, bio):
 
     # Query Perplexity for supporting documents
     perplexity_query = f"Provide information on creating a personalized workout plan for {name} with the following bio: {bio}"
-    supporting_info = query_perplexity(perplexity_query)
+    supporting_info, sources = query_perplexity(perplexity_query)
+    
+    if supporting_info is None:
+        print("Failed to get information from Perplexity. Proceeding without additional context.")
+        supporting_info = ""
+        sources = []
+    else:
+        print("Successfully retrieved information from Perplexity.")
+        print(f"Sources: {sources}")
+        print(f"Supporting info: {supporting_info}")
+
+    # Prepare sources for OpenAI prompt
+    sources_text = "\n".join([f"- {source}" for source in sources])
 
     prompt = f"""
     Name: {name}
@@ -41,7 +58,10 @@ def generate_workout_plan(name, bio):
     Supporting Information:
     {supporting_info}
 
-    Based on the information provided and the supporting information, create a personalized workout plan for the next week. 
+    Sources:
+    {sources_text}
+
+    Based on the information provided, the supporting information, and the sources, create a personalized workout plan for the next week. 
     The plan should include:
     1. Types of exercises for each day
     2. Duration of each session
@@ -60,25 +80,32 @@ def generate_workout_plan(name, bio):
         temperature=0.7,
     )
 
-    return response.choices[0].message.content.strip()
+    return response.choices[0].message.content.strip(), sources
 
-def save_workout_plan(name, workout_plan):
+def save_workout_plan(name, workout_plan, sources):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"Lessons/{name.lower().replace(' ', '_')}_{timestamp}_workout_plan.txt"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w') as file:
         file.write(workout_plan)
+        file.write("\n\nSources:\n")
+        for source in sources:
+            file.write(f"- {source}\n")
     return filename
 
 def main():
     name, bio = get_user_info()
-    workout_plan = generate_workout_plan(name, bio)
+    workout_plan, sources = generate_workout_plan(name, bio)
     
     print("\nYour personalized workout plan for the next week (5 days):")
     print(workout_plan)
 
-    filename = save_workout_plan(name, workout_plan)
+    filename = save_workout_plan(name, workout_plan, sources)
     print(f"\nYour 5-day workout plan has been saved to {filename}")
+    
+    print("\nSources used:")
+    for source in sources:
+        print(f"- {source}")
 
 if __name__ == "__main__":
     main()
